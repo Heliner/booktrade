@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>登录</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .wrapper {
+            text-align: center;
+            background: url("");
+            height: 1000px;
+        }
+
+        .loginContent {
+            font-size: 14px;
+            text-align: center;
+            width: 800px;
+            background: transparent;
+            margin: 0 auto;
+            border: transparent solid 1px;
+        }
+
+        .contentForm {
+            margin-top: 20px;
+        }
+
+        .contentForm p {
+            margin-top: 20px;
+        }
+
+        .un {
+            width: 300px;
+            height: 40px;
+        }
+
+        .pw {
+            width: 300px;
+            height: 40px;
+        }
+
+        .valCode {
+            width: 100px;
+            height: 40px;
+        }
+
+        .valCodeImg {
+            width: 150px;
+            height: 40px;
+            float: left;
+            margin-left: 50px;
+        }
+
+        .contentForm {
+            width: 400px;
+            height: 300px;
+            margin-left: auto;
+            margin-right: auto;
+            margin-top: 40px;
+            border: transparent 2px solid;
+            background: transparent;
+        }
+
+        #submitBtn {
+            width: 300px;
+            height: 30px;
+            background: #2091dc;
+            border: 1px #2091dc solid;
+        }
+
+        #errorInfo {
+            color: darkred;
+        }
+    </style>
+</head>
+<body>
+<div class="wrapper">
+    <div class="loginContent">
+        <form class="contentForm">
+            <p><input type="text" placeholder="用户名" id="username" name="username" class="un"></p>
+            <p><input type="text" placeholder="密码" id="password" name="password" class="pw"></p>
+            <p><input type="text" placeholder="验证码" id="valCode" name="valCode" class="valCode">
+                <a href="#" id="valA">
+                    <img class="valCodeImg">
+                </a>
+            </p>
+            <p><a href="/register.do">还没有账号？注册一个</a></p>
+            <p id="errorInfo">错误</p>
+
+            <p><input type="submit" value="登录" id="submitBtn"></p>
+        </form>
+    </div>
+    <script type="text/javascript" src="JS/jquery-3.2.js"></script>
+    <!--实现异步验证-->
+    <script type="text/javascript">
+        $(function () {
+            $("#submitBtn").on("click", function () {
+                var errorInfo = $('#errorInfo');
+                errorInfo.html('');
+
+                function getParamName() {
+                };
+                console.log(errorInfo)
+                password_ = $('#password').val();
+                username_ = $('#username').val();
+                valCode_ = $('#valCode').val();
+                flag = false;
+
+                if (username_.length == 0) {
+                    errorInfo.html('请输入用户名')
+                    flag = true;
+
+                }
+                else if (password_.length == 0) {
+                    errorInfo.html('请输入密码');
+                    flag = true;
+                }
+                else if (valCode_.length = 0) {
+                    errorInfo.html('验证码有误')
+                    flag = true;
+                }
+                // if (flag)
+                //     1;
+                // return false;
+                // var m = new Map();
+                var user_ = {"password": password_, "username": username_, "valCode": valCode_};
+                // console.log(user_);
+                // var data = JSON.stringfy(user_);
+                // $.ajax({
+                //     type: "POST",
+                //     url: "/user/login",
+                //     async: false,
+                //     traditional: true,
+                //     data: {},
+                //     success: function (msg) {
+                //         flag = msg;
+                //         alert("删除成功！");
+                //         location.href = "myBookshelf.do";
+                //     }
+                // });
+            });
+        });
+    </script>
+</div>
+</body>
+</html>

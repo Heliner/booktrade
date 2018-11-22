@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>校园二手书交易平台</title>
+    <link rel="stylesheet" href="<%=jhsBasePath%>Thrid-Party/font-awesome-4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="<%=jhsBasePath%>Thrid-Party/font-awesome-4.7.0/css/font-awesome.css">
+    <link rel="stylesheet" href="<%=jhsBasePath%>CSS/staticSet.css">
+    <style>
+        #wrapper {
+            min-width: 900px;
+            margin-top: 3px;
+            background: white;
+            text-align: center;
+        }
+
+        #carouselMain {
+            width: 900px;
+            height: 300px;
+            position: relative;
+            margin: 0 auto;
+        }
+
+        #slider {
+            width: 900px;
+            height: 350px;
+            margin-left: 120px;
+        }
+
+        #bookMenu {
+            position: absolute;
+            height: 300px;
+            top: 11px;
+            left: -160px;
+            border: 1px solid #ccc;
+        }
+
+        #bookMenu h4 {
+            text-align: center;
+            background: #4b4d52;
+            color: #f2f1ea;
+        }
+
+        #bookMenu ul {
+            margin-top: 10px;
+        }
+
+        #bookMenu li {
+            text-align: left;
+            border-bottom: #d6d2d2 solid 1px;
+            margin-left: 20px;
+            margin-right: 30px;
+            margin-top: 7px;
+        }
+
+        #bookMenu a:hover {
+            color: #6f391e;;
+        }
+
+        #bookMenu a {
+            color: gray;
+        }
+
+        #bookInformations {
+            width: 100%;
+            margin: 50px auto;
+        }
+
+        .bookInformation {
+            margin: 50px auto;
+            width: 90%;
+        }
+
+        #bookCategory {
+            padding-top: 10px;
+            height: 50px;
+            position: relative;
+            border-bottom: rgb(204, 204, 204) solid 1px;
+        }
+
+        #bookCategory h3 {
+            float: left;
+        }
+
+        #bookCategory a {
+            font-size: 12px;
+            color: #3f4247;
+        }
+
+        #bookCategory a:hover {
+            color: #66756b;
+        }
+
+        .appendH {
+            position: absolute;
+            right: 50px;
+            top: 17px;
+        }
+
+        .bookRack {
+            width: 100%;
+            height: auto;
+            /* background-color: #ccc; */
+            display: flex;
+            justify-content: flex-start;
+            margin-top: 15px;
+            margin-bottom: 5px;
+            flex-wrap: wrap;
+        }
+
+        /*修饰书籍信息开始*/
+
+        .bookLi {
+            min-width: 16%;
+            text-align: center;
+            height: 325px;
+            overflow: hidden;
+            border: 1px solid #eae1d2;
+            margin-right: 25px;
+            display: flex;
+            justify-content: flex-start;
+            flex-direction: column;
+            flex-wrap: wrap;
+            align-items: flex-start;
+            margin-bottom: 30px;
+            position: relative;
+        }
+
+        .bookLiAImg {
+            margin: 15px auto;
+            padding-bottom: 10px;
+            border-bottom: gray solid 1px;
+            width: 200px;
+            height: 160px;
+        }
+
+        .bookDesc {
+            margin: 0 auto;
+            height: 80px;
+            width: 185px;
+
+        }
+
+        .bookDesc h5 {
+            color: #ae6d6a;
+            font-size: 17px;
+        }
+
+        /*未解决多余的字体*/
+        .bookDesc span {
+            height: 40px;
+            font-size: 15px;
+            display: inline-block;
+            line-height: 20px;
+            width: 185px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            word-break: keep-all;
+        }
+
+        .bookDesc span:after {
+            display: inline;
+            content: "...";
+            font-size: 15px;
+        }
+
+        /*修饰书籍信息结束*/
+        .priceAndOrderDiv {
+            width: 100%;
+            height: 30px;
+        }
+
+        .OrderBookNow {
+            float: right;
+            background: #3f4247;
+            color: #f2f1ea;
+            padding: 8px;
+            font-size: 17px;
+            margin-right: 10px;
+        }
+
+        .OrderBookNow:hover {
+            /*font-weight: 600;*/
+            background-color: #626a55;
+        }
+
+        .bookPriceCancel {
+            float: left;
+            font-size: 11px;
+            margin-left: 10px;
+            margin-top: 15px;
+        }
+
+        .bookPriceCur {
+            font-size: 20px;
+            float: left;
+            color: #880b16;
+            margin-top: 5px;
+        }
+
+
+    </style>
+
+    <link rel="icon" href="IMG/icon.jpg">
+    <script type="text/javascript" src="JS/jquery-3.3.1.min.js"></script>
+    <script type="text/javascript">
+        /*使用JQuery实现复用*/
+        $(document).ready(function () {
+            $('#headerMenuTwo').load('./HeaderMenuTwo.html')
+            $('#footer').load('./Footer.html')
+        });
+
+    </script>
+</head>
+<body>
+<div id="wrapper">
+    <header id="headerMenuTwo">
+    </header>
+    <div id="main">
+
+        <div id="carouselMain">
+            <div id="slider">
+                <img width="900px" height="350px" src="IMG/slider4.jpg">
+            </div>
+            <div id="bookMenu">
+                <h4>图书导航</h4>
+                <ul class="book-class">
+                    <li><a href="#book-part-1" title="book-part-1">小说 / 文学 / 语言文学</a></li>
+                    <li><a href="#book-part-2" title="book-part-2">历史 / 地理 / 艺术</a></li>
+                    <li><a href="#book-part-3" title="book-part-3">政治 / 法律 / 军事</a></li>
+                    <li><a href="#book-part-4" title="book-part-4">哲学 / 心理 / 宗教</a></li>
+                    <li><a href="#book-part-5" title="book-part-5">经济 / 社科 / 综合</a></li>
+                    <li><a href="#book-part-6" title="book-part-6">童书 / 生活 / 体育</a></li>
+                    <li><a href="#book-part-7" title="book-part-7">工程技术 / 互联网</a></li>
+                    <li><a href="#book-part-8" title="book-part-8">教材 / 教辅 / 考试</a></li>
+                    <li><a href="#book-part-9" title="book-part-9">自然科学 / 医药卫生</a></li>
+                </ul>
+            </div>
+        </div>
+        <div id="bookInformations">
+            <ul>
+                <li>
+                    <div class="bookInformation">
+                        <div id="bookCategory">
+                            <h3>| 小说/文学/语言文学</h3>
+                            <a class="fr appendH" href="">>>更多</a>
+                        </div>
+                        <ul class="bookRack">
+                            <li class="bookLi">
+                                <a class="bookLiAImg"><img style="width: 150px;height: 150px;"
+                                                           src="IMG/book1.jpg"></a>
+                                <a class="bookDesc">
+                                    <h5>芒果街上的小屋</h5>
+                                    <span>这是一个很长很长的很长很长的很长很长的很长很长的内容这是一个很长很长的很长很长的很长很长的很长很长的内容</span>
+                                </a>
+                                <div class="priceAndOrderDiv">
+                                    <s class="bookPriceCancel">￥20.0</s>
+                                    <span class="bookPriceCur">￥9.9</span>
+                                    <a href="" class="OrderBookNow">立即下单</a>
+                                </div>
+
+                            </li>
+                            <li class="bookLi">
+                                <a class="bookLiAImg"><img style="width: 150px;height: 150px;"
+                                                           src="IMG/book1.jpg"></a>
+                                <a class="bookDesc"><h5>芒果街上的小屋</h5>
+                                    <span>这是一个很长很长的很长很长的很长很长的很长很长的内容</span>
+                                </a>
+                                <div class="priceAndOrderDiv">
+                                    <s class="bookPriceCancel">￥20.0</s>
+                                    <span class="bookPriceCur">￥9.9</span>
+                                    <a href="" class="OrderBookNow">立即下单</a>
+                                </div>
+
+                            </li>
+                            <li class="bookLi">
+                                <a class="bookLiAImg"><img style="width: 150px;height: 150px;"
+                                                           src="IMG/book1.jpg"></a>
+                                <a class="bookDesc"><h5>芒果街上的小屋</h5>
+                                    <span>这是一个很长很长的很长很长的很长很长的很长很长的内容</span>
+                                </a>
+                                <div class="priceAndOrderDiv">
+                                    <s class="bookPriceCancel">￥20.0</s>
+                                    <span class="bookPriceCur">￥9.9</span>
+                                    <a href="" class="OrderBookNow">立即下单</a>
+                                </div>
+
+                            </li>
+                            <li class="bookLi">
+                                <a class="bookLiAImg"><img style="width: 150px;height: 150px;"
+                                                           src="IMG/book1.jpg"></a>
+                                <a class="bookDesc"><h5>芒果街上的小屋</h5>
+                                    <span>这是一个很长很长的很长很长的很长很长的很长很长的内容</span>
+                                </a>
+                                <div class="priceAndOrderDiv">
+                                    <s class="bookPriceCancel">￥20.0</s>
+                                    <span class="bookPriceCur">￥9.9</span>
+                                    <a href="" class="OrderBookNow">立即下单</a>
+                                </div>
+
+                            </li>
+                            <li class="bookLi">
+                                <a class="bookLiAImg"><img style="width: 150px;height: 150px;"
+                                                           src="IMG/book1.jpg"></a>
+                                <a class="bookDesc"><h5>芒果街上的小屋</h5>
+                                    <span>这是一个很长很长的很长很长的很长很长的很长很长的内容</span>
+                                </a>
+                                <div class="priceAndOrderDiv">
+                                    <s class="bookPriceCancel">￥20.0</s>
+                                    <span class="bookPriceCur">￥9.9</span>
+                                    <a href="" class="OrderBookNow">立即下单</a>
+                                </div>
+
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+                <li>
+                    <div class="bookInformation">
+                    </div>
+                </li>
+                <li>
+                    <div class="bookInformation">
+
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <footer id="footer">
+
+    </footer>
+</div>
+</body>
+</html>

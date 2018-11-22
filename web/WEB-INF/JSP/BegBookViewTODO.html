@@ -1,0 +1,83 @@
+<!-- saved from url=(0039)http://localhost:8080/goAskBookStore.do -->
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>求书区</title>
+    <link rel="stylesheet" type="text/css" href="<%=jhsBasePath%>css/book.css">
+</head>
+<body>
+<!-- 导航 -->
+<header>
+    <nav class="navbar">
+        <div class="nav-info">
+            <a href="http://localhost:8080/goAskBookStore.do#" class="username">余文乐</a>
+            <a href="http://localhost:8080/myBookshelf.do" class="bookshelf">||&nbsp;&nbsp;&nbsp;我的书架</a>
+            <a href="http://localhost:8080/logout.do" class="logout">[ 退 出 ]</a>
+        </div> <!-- nav-info -->
+        <form action="http://localhost:8080/searchBook.do" method="post">
+            <div class="nav-search">
+                <a href="http://localhost:8080/home.do"><img class="logo" src="IMG/logo2.png"></a>
+                <div class="search-form">
+                    <input id="search-input" name="name" type="search" class="searchIn" placeholder="搜图书...">
+                    <a href="http://localhost:8080/goAskBookStore.do#" class="search-logo">| &nbsp;<img
+                            src="IMG/search.png"></a>
+                    <button type="submit" id="search-button" class="searchBtn">搜索</button>
+                </div>
+            </div><!--  nav-search -->
+        </form>
+        <ul class="menu">
+            <li><a href="http://localhost:8080/home.do">首页</a></li>
+            <li><a href="http://localhost:8080/goBookStore.do">书籍良品</a></li>
+            <li><a class="active" href="http://localhost:8080/goAskBookStore.do">求书区</a></li>
+            <li><a href="http://localhost:8080/goAskBookStore.do#">服务区</a></li>
+        </ul>
+    </nav>
+    <div class="askBook-pic"></div>
+</header>
+<!-- 图书分类 -->
+<div id="container">
+    <div id="book-container">
+        <h3 class="book-title"><a href="http://localhost:8080/goAskBookStore.do#">| 所有求书信息</a></h3>
+        <img src="none" width="80%" height="100px " alt="该功能正在紧急制作中!">
+        <ul class="book-lists">
+        </ul><!--  book-list end -->
+    </div> <!-- book-container end-->
+    <span class="page-btn">
+			<a href="http://localhost:8080/goAskBookStore.do?start=0" class="page-top">首页</a>
+			<a href="http://localhost:8080/goAskBookStore.do?start=-16" class="page-pre">上一页</a>
+			<a href="http://localhost:8080/goAskBookStore.do?start=16" class="page-next">下一页</a>
+			<a href="http://localhost:8080/goAskBookStore.do?start=32" class="page-end">尾页</a>
+		</span>
+</div><!-- container end-->
+<footer>
+    <a href="http://localhost:8080/goAskBookStore.do#">©2018-2019 二手书交易</a>
+    <a href="http://localhost:8080/goAskBookStore.do#">意见反馈&nbsp;&nbsp;&nbsp;联系我们&nbsp;&nbsp;&nbsp;隐私权声明&nbsp;&nbsp;&nbsp;使用条款</a>
+</footer>
+<script type="text/javascript" src="JS/jquery-3.2.js"></script>
+<script type="text/javascript">
+    $(function () {
+        //菜单特效
+        var index = 0
+        $("#book-menu-toggle").on("click", function () {
+            if (index === 0) {
+                $("#book-menu").css("left", "1px");
+                $(this).css("left", "178px");
+                index = 1;
+            } else {
+                $("#book-menu").css("left", "-180px");
+                $(this).css("left", "1px");
+                index = 0;
+            }
+        });
+
+        //点击菜单，对应类别颜色加深
+        $(".book-class li").on("click", function () {
+            //加粗当前点击的li
+            $(this).css("font-weight", "600").siblings("li").css("font-weight", "500");
+        });
+    })
+</script>
+
+
+</body>
+</html>

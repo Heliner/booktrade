@@ -1,0 +1,154 @@
+body {
+    font-family: "Microsoft YaHei UI";
+}
+
+#main {
+    text-align: center;
+}
+
+/*修饰主图*/
+.CBVLMainImg {
+    width: 90%;
+    height: 250px;
+    background: url("../../IMG/bookStore.jpg");
+    margin: 10px auto;
+    background-position: bottom;
+    background-size: cover;
+    opacity: 0.9;
+}
+
+/*修饰主图完毕*/
+/*修饰bookInformation*/
+#bookInformations {
+    width: 100%;
+    margin: 50px auto;
+}
+
+.bookInformation {
+    margin: 50px auto;
+    width: 90%;
+    border-left: rgb(204, 204, 204) solid 1px;
+    padding-left: 10px;
+}
+
+#bookCategory {
+    padding-top: 10px;
+    height: 50px;
+    position: relative;
+    border-bottom: rgb(204, 204, 204) solid 2px;
+}
+
+#bookCategory h3 {
+    float: left;
+}
+
+#bookCategory a {
+    font-size: 12px;
+    color: #3f4247;
+}
+
+.appendH {
+    position: absolute;
+    right: 50px;
+    top: 17px;
+}
+
+.bookRack {
+    width: 100%;
+    height: auto;
+    /* background-color: #ccc; */
+    display: flex;
+    justify-content: flex-start;
+    margin-top: 15px;
+    margin-bottom: 5px;
+    flex-wrap: wrap;
+}
+
+.bookLi {
+    min-width: 16%;
+    text-align: center;
+    height: 325px;
+    overflow: hidden;
+    border: 1px solid #eae1d2;
+    margin-right: 25px;
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    margin-bottom: 30px;
+    position: relative;
+}
+
+.bookLiAImg {
+    margin: 15px auto;
+    padding-bottom: 10px;
+    border-bottom: gray solid 1px;
+    width: 200px;
+    height: 160px;
+}
+
+.bookDesc {
+    overflow: hidden;
+    margin: 0 auto;
+    height: 80px;
+    width: 185px;
+}
+
+.bookDesc h5 {
+    color: #ae6d6a;
+    font-size: 17px;
+}
+
+.bookDesc span {
+    font-size: 13px;
+}
+
+.priceAndOrderDiv {
+    width: 100%;
+    height: 30px;
+}
+
+.OrderBookNow {
+    float: right;
+    background: #3f4247;
+    color: #f2f1ea;
+    padding: 8px;
+    font-size: 15px;
+    margin-right: 10px;
+}
+
+.OrderBookNow:hover {
+    /*font-weight: 600;*/
+    background-color: #626a55;
+    font-weight: 600;
+}
+
+.bookPriceCancel {
+    float: left;
+    font-size: 11px;
+    margin-left: 10px;
+    margin-top: 12px;
+}
+
+.bookPriceCur {
+    font-size: 20px;
+    float: left;
+    color: #880b16;
+    margin-top: 5px;
+}
+
+/*修饰结束*/
+/*修饰pageHelper*/
+#pageHelper a {
+    padding: 10px;
+    border-radius: 2px;
+    background: gray;
+    color: #f2f1ea;
+    font-size: 16px;
+    margin-left: 6px;
+}
+
+#pageHelper a:hover {
+    background: #66756b;
+}

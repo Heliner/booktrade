@@ -1,0 +1,73 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.wrapper {
+    text-align: center;
+    background: url("../img/mainBG1.jpg") no-repeat;
+    background-size: 100% 100%;
+    height: 800px;
+}
+
+.loginContent {
+    font-size: 14px;
+    text-align: center;
+    width: 800px;
+    background: transparent;
+    margin: 0 auto;
+    border: transparent solid 1px;
+}
+
+.contentForm {
+    width: 450px;
+    height: 350px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 40px;
+    border: white 2px solid;
+    background: white;
+    padding-bottom: 10px;
+    padding-top: 10px;
+    overflow: hidden;
+}
+
+.contentForm p {
+    margin-top: 20px;
+    overflow: hidden;
+}
+
+.un {
+    width: 300px;
+    height: 40px;
+}
+
+.pw {
+    width: 300px;
+    height: 40px;
+}
+
+.valCode {
+    width: 100px;
+    height: 40px;
+    margin-left: -20px;
+}
+
+.valCodeImg {
+    width: 150px;
+    height: 40px;
+    float: left;
+    margin-left: 73px;
+}
+
+#submitBtn {
+    width: 300px;
+    height: 30px;
+    background: #2091dc;
+    border: 1px #2091dc solid;
+}
+
+#errorInfo {
+    color: darkred;
+}

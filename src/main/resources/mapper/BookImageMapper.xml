@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.cqut.dao.BookImageMapper">
+    <resultMap id="baseResultMap" type="BookImage" autoMapping="true">
+        <id column="id" property="id"/>
+    </resultMap>
+
+    <insert id="batchInsert" parameterType="list">
+        INSERT INTO bookimage(bookimage.id,bookimage.directory,bookimage.type,bookimage.bid) VALUES
+        <foreach collection="list" item="bookImage" separator="," index="index" open="(" close=")">
+            #{bookImage.id},#{bookImage.directory},#{bookImage.type},#{bookImage.book.id}
+        </foreach>
+    </insert>
+
+    <delete id="batchDelete" parameterType="list">
+        DELETE FROM bookimage
+        WHERE id IN
+        <foreach collection="list" item="bookImage" open="(" close=")" separator="," index="index">
+            #{bookImage.id}
+        </foreach>
+    </delete>
+
+    <select id="selectByBidList" parameterType="list" resultMap="baseResultMap">
+        SELECT * FROM bookimage WHERE bid IN
+        <foreach open="(" close=")" collection="list" item="bookId" separator=",">
+            #{bookId}
+        </foreach>
+    </select>
+
+    <delete id="deleteByBid" parameterType="BookImage">
+        <if test="#{bid}!=null">
+            DELETE FROM bookimage WHERE bookimage.bid=#{bid}
+        </if>
+    </delete>
+</mapper>
+

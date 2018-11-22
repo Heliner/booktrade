@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.cqut.dao.UserMapper">
+    <sql id="baseUpdateSql">
+        <set>
+            <if test="user!=null">
+                <if test="username!=null">
+                    username=#{username}
+                </if>
+                <if test="name!=null">
+                    name=#{name}
+                </if>
+                <if test="password!=null">
+                    password= #{password}
+                </if>
+                <if test="sex!=null">
+                    sex=#{sex}
+                </if>
+                <if test="tel!=null">
+                    tel=#{tel}
+                </if>
+                <if test="address!=null">
+                    address=#{address}
+                </if>
+                <if test="major!=null">
+                    major = #{major}
+                </if>
+                <if test="qq_associated!=null">
+                    qq_associated=#{qq_associated}
+                </if>
+                <if test="campus!=null">
+                    campus=#{campus}
+                </if>
+                <if test="email!=null">
+                    email=#{email}
+                </if>
+            </if>
+            <where>
+                id = #{id}
+            </where>
+        </set>
+    </sql>
+    <sql id="baseInsertSql">
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="username != null">
+                username,
+            </if>
+            <if test="name!=null">
+                name,
+            </if>
+            <if test="password != null">
+                password,
+            </if>
+            <if test="sex!=null">
+                sex,
+            </if>
+            <if test="tel!=null">
+                tel,
+            </if>
+            <if test="address!=null">
+                address,
+            </if>
+            <if test="major!=null">
+                major,
+            </if>
+            <if test="qq_associated!=null">
+                qq_associated,
+            </if>
+            <if test="campus!=null">
+                campus,
+            </if>
+            <if test="email!=null">
+                email,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=BIGINT},
+            </if>
+            <if test="username != null">
+                #{username,jdbcType=VARCHAR},
+            </if>
+            <if test="password != null">
+                #{password},
+            </if>
+            <if test="sex!=null">
+                #{sex},
+            </if>
+            <if test="tel!=null">
+                #{tel},
+            </if>
+            <if test="address!=null">
+                #{address},
+            </if>
+            <if test="major!=null">
+                #{major},
+            </if>
+            <if test="qq_associated!=null">
+                #{qq_associated},
+            </if>
+            <if test="campus!=null">
+                #{campus},
+            </if>
+            <if test="email!=null">
+                #{email},
+            </if>
+        </trim>
+    </sql>
+
+    <resultMap id="baseResultMap" type="User" autoMapping="true">
+    </resultMap>
+    <resultMap id="extendResultMap" type="com.cqut.entity.User" autoMapping="true">
+        <id column="id" property="id"></id>
+        <collection property="favoritesList" ofType="Book" columnPrefix="book"
+                    resultMap="com.cqut.dao.BookMapper.baseResultMap">
+        </collection>
+        <!--<collection property="bookList" ofType="Book" resultMap="com.cqut.dao.BookMapper.baseResultMap">-->
+        <!--<id column="bid"></id>-->
+        <!--</collection>-->
+        <!---->
+    </resultMap>
+
+    <select id="selectUserByName" parameterType="string" resultMap="baseResultMap">
+        SELECT *
+        FROM USER
+        WHERE USERNAME = #{username}
+    </select>
+
+    <select id="selectById" parameterType="User" resultType="User">
+        /*something confusing*/
+        <if test="user!=null and id!=null">
+            SELECT * FROM user
+            <where>id=#{user.id}</where>
+        </if>
+    </select>
+
+    <select id="selectUserByInfo" parameterType="com.cqut.entity.User" resultMap="extendResultMap">
+        SELECT * FROM USER WHERE 1=1
+        <trim prefix="AND" suffix=" " prefixOverrides="">
+            <if test="user!=null">
+                <if test="id!=null">
+                    id=#{id}
+                </if>
+                <if test="username!=null">
+                    username=#{username}
+                </if>
+                <if test="name!=null">
+                    /*confusing*/
+                    name=#{name}
+                </if>
+                <if test="password!=null">
+                    password=#{password}
+                </if>
+                <if test="sex!=null">
+                    sex=#{sex}
+                </if>
+                <if test="tel!=null">
+                    tel=#{tel}
+                </if>
+                <if test="address!=null">
+                    address=#{address}
+                </if>
+                <if test="major!=null">
+                    major=#{major}
+                </if>
+                <if test="qq_associated!=null">
+                    qq_associated=#{qq_associated}
+                </if>
+                <if test="campus!=null">
+                    campus=#{campus}
+                </if>
+                <if test="email!=null">
+                    email=#{email}
+                </if>
+            </if>
+        </trim>
+    </select>
+    <delete id="deleteUserByIdOrName" parameterType="User">
+        DELETE FROM USER WHERE 1=1
+        <trim prefix="AND" prefixOverrides="AND" suffix=" ">
+            <if test="id!=null">
+                id=#{user.id}
+            </if>
+            <if test="username!=null">
+                username=#{user.username}
+            </if>
+        </trim>
+    </delete>
+
+    <update id="update">
+        UPDATE user
+        <include refid="baseUpdateSql"/>
+    </update>
+    <insert id="insert" parameterType="User">
+        <selectKey order="AFTER" keyColumn="id" keyProperty="id"></selectKey>
+        INSERT INTO user
+        <include refid="baseInsertSql"/>
+    </insert>
+
+    <select id="count" resultType="long">
+        SELECT COUNT(ID)
+        FROM user
+    </select>
+</mapper>

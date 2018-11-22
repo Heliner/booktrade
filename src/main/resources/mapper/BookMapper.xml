@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.cqut.dao.BookMapper">
+    <resultMap id="baseResultMap" type="com.cqut.entity.Book" autoMapping="true">
+        <id column="id" property="id"/>
+        <!--fixme columnPrefix=""-->
+        <association property="category" javaType="Category" columnPrefix="category_" autoMapping="true">
+            <id column="cid" property="id"/>
+        </association>
+        <association property="user" javaType="User" columnPrefix="user_" autoMapping="true">
+            <id column="uid" property="id"/>
+        </association>
+    </resultMap>
+    <!--id name cid booktype-->
+
+    <sql id="baseCountByInfo">
+        SELECT COUNT(*)
+        FROM book
+    </sql>
+    <sql id="baseSelectByInfo">
+        SELECT * FROM book
+        <where>
+            <if test="id!=null">
+                and id = #{id}
+            </if>
+            <if test="name!=null">
+                and name=#{name}
+            </if>
+            <if test="category.id !=null">
+                and cid=#{category.id}
+            </if>
+            <if test="bookType!=null">
+                and book_type = #{bookType}
+            </if>
+        </where>
+
+    </sql>
+
+    <sql id="baseContactSelectSql">
+
+        SELECT book.*,
+               category.category    as category,
+               category.id          as category_id,
+               user.username        as user_username,
+               `user`.address       as user_address,
+               `user`.campus        as user_campus,
+               `user`.address       as user_address,
+               `user`.tel           as user_tel,
+               `user`.qq_associated as user_qq_associated
+        from book LEFT OUTER JOIN category ON category.id = book.cid
+                LEFT OUTER JOIN user ON user.id = book.uid
+    </sql>
+
+    <select id="selectBooksByInfo" parameterType="Book" resultMap="baseResultMap">
+        <include refid="baseSelectByInfo"></include>
+    </select>
+    <select id="selectBookById" parameterType="long" resultMap="baseResultMap">
+        <include refid="baseContactSelectSql"></include>
+        where id = #{id}
+    </select>
+
+    <select id="selectBookByUid" parameterType="long" resultMap="baseResultMap">
+        <include refid="baseContactSelectSql"></include>
+        WHERE uid = #{uid}
+    </select>
+
+    <select id="deleteBookById" parameterType="long">
+        DELETE
+        FROM book
+        WHERE id = #{id}
+    </select>
+
+
+    <update id="updateBook" parameterType="Book">
+        UPDATE book
+        SET name = #{name},
+        cid = #{updateBook.category.id},
+        book_type = #{bookType},
+        price = #{price},
+        original_price = #{originalPrice},
+        uid = #{updateBook.user.id},
+        author = #{author},
+        press = #{press},
+        version = #{version},
+        degree = #{degree},
+        description = #{description},
+        shelves_date = #{shelvesDate}
+        WHERE book.id = #{book.id}
+    </update>
+    <!--插入语句，只需要对部分含有默认值的数据进行null判断-->
+    <!--shelves_date/-->
+    <insert id="insertBook" useGeneratedKeys="true" keyProperty="id" parameterType="Book">
+        INSERT INTO book (name,
+                          cid,
+                          book_type,
+                          price,
+                          original_price,
+                          uid,
+                          author,
+                          press,
+                          version,
+                          degree,
+                          description,
+                          shelves_date)
+        VALUES (#{name},
+                #{category.id},
+                #{bookType},
+                #{price},
+                #{originalPrice},
+                #{user.id},
+                #{author},
+                #{press},
+                #{version},
+                #{degree},
+                #{description},
+                #{shelvesDate})
+    </insert>
+
+    <select id="countBooksByUserId" parameterType="long" resultType="long">
+        SELECT distinct count(*)
+        FROM book
+        WHERE book.uid = #{userId}
+    </select>
+    <!--fixme 多个复杂参数传入 Book java.lang.long java.lang.long-->
+    <select id="selectBooksByInfoLimit" resultMap="baseResultMap">
+        <include refid="baseContactSelectSql"/>
+        <if test="book!=null">
+            <where>
+                <if test="book.id!=null">
+                    and book.id = #{book.id}
+                </if>
+                <if test="book.name!=null">
+                    and name=#{book.name}
+                </if>
+                <if test="book.category.id!=null">
+                    and cid=#{book.category.id}
+                </if>
+                <if test="book.bookType!=null">
+                    and book_type = #{book.bookType}
+                </if>
+            </where>
+        </if>
+        LIMIT #{start},#{end}
+    </select>
+    <select id="selectByPrimaryKey" parameterType="_long" resultMap="baseResultMap">
+        <if test="id!=null">
+            <include refid="baseContactSelectSql"/>
+            <where>
+                book.id = #{id}
+            </where>
+        </if>
+    </select>
+    <select id="countByInfo" parameterType="Book" resultType="_long">
+        <include refid="baseCountByInfo"/>
+        <if test="book!=null">
+            <where>
+                <if test="book.id!=null">
+                    book.id = #{book.id}
+                </if>
+                <if test="book.name!=null">
+                    and name=#{book.name}
+                </if>
+                <if test="book.category.id!=null">
+                    and cid=#{book.category.id}
+                </if>
+                <if test="book.bookType!=null">
+                    and book_type = #{book.bookType}
+                </if>
+            </where>
+        </if>
+    </select>
+</mapper>
+
