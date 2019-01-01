@@ -93,23 +93,23 @@
 <header>
     <nav class="navService">
         <ul>
-            <li><a href="">首页</a></li>
-            <li><a href="">二手书区</a></li>
-            <li><a href="">求购区</a></li>
+            <li><a href="<%=jhsBasePath%>home.do">首页</a></li>
+            <li><a href="<%=jhsBasePath%>book/store">二手书区</a></li>
+            <li><a href="<%=jhsBasePath%>book/beg">求购区</a></li>
             <li><a href="">服务区</a></li>
         </ul>
     </nav>
     <div class="navSearch">
-        <form action="/book/search" method="GET">
+        <form action="<%=jhsBasePath%>book/search" method="post">
             <input type="search" class="searchInput" placeholder="输入图书...">
             <input type="submit" class="searchSubmit" value="搜索">
         </form>
     </div>
     <div id="userInfoNav" class="userInfoNav">
         <dl>
-            <dt><a>[ 退出 ]</a></dt>
-            <dd><a> ||我的书架</a></dd>
-            <dd><a>余文乐</a></dd>
+            <dt><a href="<%=jhsBasePath%>user/logout">[ 退出 ]</a></dt>
+            <dd><a href="<%=jhsBasePath%>/user/mystall.do"> ||我的书架</a></dd>
+            <dd><a href="<%=jhsBasePath%>/user/MyInfoView">${user.username}</a></dd>
         </dl>
     </div>
 </header>

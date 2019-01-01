@@ -8,12 +8,7 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <title>登录</title>
-    <script type="text/javascript">
-        function randomImageAAA() {
-            randImage = document.getElementById("valCodeImg");
-            randImage.src = "<%=jhsBasePath%>user/ImgVal?math=" + Math.random();
-        }
-    </script>
+
     <link rel="stylesheet" href="<%=jhsBasePath%>css/Login.css" type="text/css">
 </head>
 <body>
@@ -90,6 +85,13 @@
                 });
             });
         });
+
+        function randomImageAAA() {
+            randImage = document.getElementById("valCodeImg");
+            randImage.src = "<%=jhsBasePath%>user/ImgVal?math=" + Math.random();
+        }
+
+        randomImageAAA();
     </script>
 </div>
 </body>

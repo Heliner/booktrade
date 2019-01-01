@@ -186,7 +186,7 @@ public class UserController {
 
     @RequestMapping("/ImgVal")
     public void imgValidate(HttpServletResponse response, HttpServletRequest request) throws IOException {
-        int width = 80;
+        int width = 60;
         int height = 40;
         Random random = new Random();
         //设置response头信息

@@ -1,0 +1,80 @@
+.wuyou-waiter {
+    position: fixed;
+    right: 20px;
+    top: 80%;
+    margin-top: -90px;
+    width: 60px;
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, .3);
+    z-index: 999;
+}
+
+.waiter-ul li {
+    position: relative;
+    height: 60px;
+    line-height: 60px;
+    border-bottom: 1px solid #fff;
+}
+
+.waiter-ul li a {
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 2;
+    color: #fff;
+    display: block;
+    width: 60px;
+    height: 60px;
+    line-height: 60px;
+    text-align: center;
+    -webkit-transition: all 1.0s;
+    text-decoration: none;
+    font-size: 24px;
+}
+
+.waiter-title {
+    position: absolute;
+    left: 0px;
+    bottom: 1px;
+    color: #fff;
+    width: 80px;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    -webkit-transition: all 1.0s;
+    background-color: #fff;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, .3);
+    z-index: 1;
+    opacity: 0;
+}
+
+.waiter-title:before {
+    content: '';
+    display: block;
+    width: 10px;
+    height: 10px;
+    position: absolute;
+    right: -5px;
+    top: 14px;
+    background-color: #fff;
+    transform: rotate(45deg);
+}
+
+.waiter-ul li:hover .waiter-title {
+    left: -88px;
+    opacity: 1;
+}
+
+.waiter-ul li.wuyou-top a {
+    background-image: -webkit-linear-gradient(left, #333, #666);
+    background-image: -moz-linear-gradient(left, #333, #666);
+    background-image: -ms-linear-gradient(left, #333, #666);
+    background: url("../img/top.jpg");
+}
+
+.waiter-ul li.wuyou-top .waiter-title {
+    background-color: #333;
+}
+
+.waiter-ul li.wuyou-top .waiter-title:before {
+    background-color: #333;
+}

@@ -8,87 +8,7 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <title>注册</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        .wrapper {
-            text-align: center;
-
-            background: url("");
-        }
-
-        .loginContent {
-            font-size: 14px;
-            text-align: center;
-            width: 800px;
-            background: transparent;
-            margin: 0 auto;
-            border: transparent solid 1px;
-        }
-
-        .contentForm {
-            margin-top: 20px;
-        }
-
-        .contentForm p {
-            margin-top: 20px;
-        }
-
-        .un {
-            width: 300px;
-            height: 40px;
-        }
-
-        .pw {
-            width: 300px;
-            height: 40px;
-        }
-
-        .valCode {
-            width: 100px;
-            height: 40px;
-        }
-
-        .valCodeImg {
-            width: 150px;
-            height: 40px;
-            float: left;
-            margin-left: 50px;
-            color: red;
-            background: #2091dc;
-        }
-
-        .contentForm {
-            width: 400px;
-            height: 300px;
-            margin-left: auto;
-            margin-right: auto;
-            margin-top: 40px;
-            border: transparent 2px solid;
-            background: transparent;
-        }
-
-        #submitBtn {
-            width: 300px;
-            height: 30px;
-            background: #2091dc;
-            border: 1px #2091dc solid;
-        }
-
-        #timeTip {
-            width: 3em;
-            color: #6f391e;
-        }
-
-        #errorInfo {
-            color: firebrick;
-            font-weight: 700;
-        }
-    </style>
+    <link rel="stylesheet" href="<%=jhsBasePath%>css/Register.css">
 </head>
 <body>
 <div class="wrapper">
@@ -115,6 +35,10 @@
 <script type="text/javascript" src="<%=jhsBasePath%>js/jquery-3.2.js"></script>
 <script type="text/javascript">
     $(function () {
+        $("#submitBtn").on("click", function () {
+            alert("获取验证码成功");
+        });
+
         $("#submitBtn").on("click", function (event) {
             var errorInfo = $('#errorInfo');
             errorInfo.html('');
@@ -173,6 +97,8 @@
             });
         });
     });
+
+
 </script>
 
 </html>

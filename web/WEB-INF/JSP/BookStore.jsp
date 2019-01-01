@@ -19,19 +19,20 @@
 
     <div id="book-container">
         <h3 class="book-title">
-            <c:if test="${bookPage.list[0].category.category}!=null">
-                <a href="#">| ${bookPage.list[0].category.category}</a>
-            </c:if>
-            <c:if test="${bookPage.list[0].category.category}==null">
+            <c:if test="${not empty bookPage.list[0].category.category}">
                 精品图书
             </c:if>
+            <c:if test="${bookPage.list[0].category.category}">
+                <a href="#">| ${bookPage.list[0].category.category}</a>
+            </c:if>
+
         </h3>
 
         <ul class="book-lists">
             <c:forEach items="${bookPage.list}" var="book" varStatus="bookStatus">
                 <li class="book-list">
                     <a href="/book/get/${book.id}" class="book-pic" target="_blank">
-                        <img src="<%=request.getContextPath()%>/${book.bookImageList[0].directory}">
+                        <img src="<%=request.getContextPath()%>${book.bookImageList[0].directory}">
                             <%--<img>--%>
                     </a>
                     <a href="#" class="book-info">
@@ -45,9 +46,6 @@
                 </li>
             </c:forEach>
         </ul>
-    </div>
-    <div style="width: 100px; height: 100px ;background: palegoldenrod">
-
     </div>
     <div class="page-btn">
         <a href="${pageContext.request.contextPath}/book/store?currentPage=${bookPage.firstPage}">首页</a>

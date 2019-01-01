@@ -54,30 +54,29 @@ public class BookController {
 //        System.out.println(idList.get(0));
         idList.stream().forEach(System.out::println);
 
-        /*try {
-         *//*删除图片需要bid*//*
+        try {
             bookImageService.deleteImageList(idList, curUser);
-            *//*删除数据库中的书本信息后，图片中bid会为空或者记录直接被删除*//*
+//            删除数据库中的书本信息后，图片中bid会为空或者记录直接被删除
             bookService.batchDeleteBook(idList, curUser);
             //todo
         } catch (Exception e) {
             e.printStackTrace();
             return GENERATE_FAIL_VIEW("数据有误");
         }
-        */
-        modelAndViewS.setViewName("redirct:/user/mystall.do");
+        modelAndViewS.setViewName("redirect:/user/mystall.do");
         return modelAndViewS;
     }
 
     /*更新转跳*/
     /*只需要部分信息{id}*/
-    @RequestMapping(value = "/updateBook.do")
-    public ModelAndView editBookDo(HttpServletRequest request, @RequestParam(value = "bid") Long bid) {
+    @RequestMapping(value = "/updateBook/{bid}")
+    public ModelAndView editBookDo(HttpServletRequest request, @PathVariable(value = "bid") Long bid) {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("/EditBookInfoTODO");
         Book book = new Book();
         book.setId(bid);
         try {
+            book = bookService.selectByPrimaryKey(bid);
             modelAndView.addObject("book", book);
         } catch (Exception e) {
             e.printStackTrace();
@@ -218,13 +217,7 @@ public class BookController {
         book.setCategory(category);
         try {
             Long count = bookService.countByInfo(null);
-            Long curPage = bookPageHelper.getCurrentPage();
-            Long pageSize = bookPageHelper.getPageSize();
-            if (bookPageHelper == null)
-                bookPageHelper = new BookPageHelper(curPage, pageSize, count);
-            else {
-                bookPageHelper = BookPageHelper.generateWithCheck(bookPageHelper, count);
-            }
+            bookPageHelper = BookPageHelper.generateWithCheck(bookPageHelper, count);
 
             modelAndView.setViewName("/CategoryBookViewListR");
             modelAndView.addObject("bookList", bookService.selectBooksByInfoLimit(book, bookPageHelper.getStart(), bookPageHelper.getEnd()));

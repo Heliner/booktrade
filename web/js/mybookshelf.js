@@ -2,24 +2,26 @@ $(function () {
     //选择对应书本进行选择删除操作
     var bookIdArr = [], bookId;
     $("i#selectBook").on("click", function () {
+        var selectBook = document.getElementById("selectBook");
         bookId = $(this).siblings("input").attr("value");
-        console.log("bookId" + bookId);
         //判断数组里是否有bookId,无则返回-1
         if ($.inArray(bookId, bookIdArr) == -1) {
-            $(this).css("background-image", "url(img/delete1.png)");
-            bookIdArr.push(bookId);
-            console.log(bookIdArr);
-        } else {
-            $('#selectBook').cssText = "fa fa-check-circle-o fa-2x";
-            // $(this).css("background-image", "url(img/delete2.png)");
+            console.log(this);
+            console.log(this.id)
+            this.className = "fa fa-check-circle-o fa-2x";
+            // selectBook.className = "fa fa-check-circle-o fa-2x";
 
+            bookIdArr.push(bookId);
+            console.log("1:::" + bookIdArr);
+        } else {
+            this.className = "fa fa-square-o fa-2x";
+            // selectBook.className = "fa fa-square-o fa-2x";
             bookIdArr = $.grep(bookIdArr, function (val) {
                 return val != bookId;
             });
-            console.log(bookIdArr);
+            console.log("2:::" + bookIdArr);
         }
     });
-
 
     // 点击删除图标，确认是否删除
     var flag = false;

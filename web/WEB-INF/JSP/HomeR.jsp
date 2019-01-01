@@ -7,14 +7,19 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <title>校园二手书交易平台</title>
+    <link rel="icon" href="<%=jhsBasePath%>img/icon.jpg">
+
+
     <link rel="stylesheet" href="<%=jhsBasePath%>Thrid-Party/font-awesome-4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="<%=jhsBasePath%>Thrid-Party/font-awesome-4.7.0/css/font-awesome.css">
     <link rel="stylesheet" href="<%=jhsBasePath%>css/staticSet.css">
     <link rel="stylesheet" href="<%=jhsBasePath%>css/HomeR.css">
+    <link rel="stylesheet" href="<%=jhsBasePath%>css/carousel.css">
+    <link rel="stylesheet" type="text/css" href="<%=jhsBasePath%>css/waiter.css">
+
     <script type="text/javascript" src="<%=jhsBasePath%>js/jquery-3.3.1.min.js"></script>
     <script src="<%=jhsBasePath%>js/carousel.js"></script>
-    <link rel="stylesheet" href="<%=jhsBasePath%>css/carousel.css">
-    <link rel="icon" href="<%=jhsBasePath%>img/icon.jpg">
+
 </head>
 <body>
 <div id="wrapper">
@@ -96,8 +101,17 @@
             </ul>
         </div>
     </div>
+    <div class="wuyou-waiter">
+        <ul class="waiter-ul">
+            <li class="wuyou-top">
+                <a class="iconfont icon-Upward" href="#"></a>
+                <div class="waiter-title">回到顶部</div>
+            </li>
+        </ul>
+    </div>
     <%--<jsp:include page="Footer.html" flush="false"/>--%>
     <jsp:include page="./Footer.jsp"/>
+
 </div>
 <script>
     var carousel = new Carousel({

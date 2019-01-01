@@ -128,7 +128,7 @@
         var jsonData = JSON.stringify(id_);
         $.ajax({
             type: "POST",
-            url: "/books/categories",
+            url: "/book/categories",
             async: false,
             dataType: "json",
             contentType: "application/json;charset=UTF-8",
@@ -165,19 +165,19 @@
         });
     });
 
-    $(function () {
-        $("#book-file").change(function () {
-            var filePath = $(this).val().split("\\");
-            var len = filePath.length;
-            var file = filePath[len - 1];
-            if (!file) {
-                filePath = "img/loadPic.png"
-            }
-            filePath = "img/" + file;
-            // console.log(filePath);
-            $("#book-pic").attr("src", filePath);
-        })
-    });
+    /*    $(function () {
+            $("#book-pic").change(function () {
+                var filePath = $(this).val().split("\\");
+                var len = filePath.length;
+                var file = filePath[len - 1];
+                if (!file) {
+                    filePath = "img/loadPic.png"
+                }
+                filePath = "img/" + file;
+                // console.log(filePath);
+                $("#book-pic").attr("src", filePath);
+            })
+        });*/
 
 
 </script>
